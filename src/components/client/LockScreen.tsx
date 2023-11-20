@@ -1,5 +1,5 @@
 "use client"
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { ChildrenType } from "../../types/types"
 import WindowsContex from "@/context/WindowsContext"
 import { AnimatePresence, motion } from "framer-motion"
@@ -10,6 +10,11 @@ import { enterFullScreen } from "@/lib/utils"
 const LockScreen = ({ children }: ChildrenType) => {
     const { WindowsState, setWindowsState } = useContext(WindowsContex);
     const [passwordScreen, setPasswordScreen] = useState(false);
+    const [hydrated, setHydrated] = useState(false);
+
+    useEffect(() => {
+        setHydrated(true)
+    }, [])
 
     const handleDrag = (e: DragEvent) => {
         if (e.screenY < 400) setPasswordScreen(true)
@@ -18,10 +23,6 @@ const LockScreen = ({ children }: ChildrenType) => {
     const login = () => {
         setWindowsState(prev => ({ ...prev, locked: false, fullScreen: true }));
         enterFullScreen();
-    }
-
-    const swipeUp = (e: React.KeyboardEvent<HTMLDivElement>) => {
-        console.log(e);
     }
 
 
@@ -53,7 +54,7 @@ const LockScreen = ({ children }: ChildrenType) => {
                                 ease: 'easeOut'
                             }}
                         >
-                            <motion.div className="flex items-center flex-col -mt-8"
+                            <motion.div className="flex items-center flex-col -mt-8 text-white"
                                 initial={{ scale: .8, opacity: 0 }}
                                 animate={{ scale: 1, opacity: 1 }}
                             >
@@ -72,7 +73,6 @@ const LockScreen = ({ children }: ChildrenType) => {
                                 drag="y"
                                 dragConstraints={{ left: 0, right: 0, top: -500, bottom: 0 }}
                                 dragElastic
-                                onKeyPress={(e) => console.log(e)}
                                 transition={{
                                     duration: .5,
                                     type: "tween",
@@ -82,25 +82,31 @@ const LockScreen = ({ children }: ChildrenType) => {
                                 dragSnapToOrigin
                                 onDrag={handleDrag}
                             >
-                                <motion.div
-                                    initial={{ scale: 0.9, opacity: 0 }}
-                                    animate={{ scale: 1, opacity: 1 }}
-                                    transition={{ delay: .5 }}
-                                    className="flex gap-2 flex-col items-center justify-center"
-                                >
-                                    <div className="flex gap-1 items-center select-none font-semibold text-9xl">
-                                        <h1>{WindowsState.dateTime.hours}</h1>
-                                        <span>:</span>
-                                        <h1>{WindowsState.dateTime.minutes}</h1>
-                                    </div>
-                                    <div className="flex gap-1 items-center font-semibold">
-                                        {WindowsState.dateTime.day}
-                                        <span>,</span>
-                                        {WindowsState.dateTime.month}
-                                        &nbsp;
-                                        {WindowsState.dateTime.date}
-                                    </div>
-                                </motion.div>
+                                {
+                                    hydrated ?
+
+                                        <motion.div
+                                            initial={{ scale: 0.9, opacity: 0 }}
+                                            animate={{ scale: 1, opacity: 1 }}
+                                            transition={{ delay: .5 }}
+                                            className="flex gap-2 flex-col items-center justify-center mt-[-15%] text-white"
+                                        >
+                                            <div className="flex gap-1 items-center select-none font-semibold text-9xl">
+                                                <h1>{WindowsState.dateTime.hours}</h1>
+                                                <span>:</span>
+                                                <h1>{WindowsState.dateTime.minutes}</h1>
+                                            </div>
+                                            <div className="flex gap-1 items-center font-semibold">
+                                                {WindowsState.dateTime.day}
+                                                <span>,</span>
+                                                {WindowsState.dateTime.month}
+                                                &nbsp;
+                                                {WindowsState.dateTime.date}
+                                            </div>
+                                        </motion.div>
+                                        :
+                                        null
+                                }
                             </motion.div>
                         </AnimatePresence>
                 }

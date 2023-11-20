@@ -1,3 +1,5 @@
+import { DragControls } from "framer-motion"
+
 export type ChildrenType = {
     children: React.ReactNode
 }
@@ -9,6 +11,7 @@ export type IconType = {
 export type ExplorerTitleType = {
     icon: string,
     title: string
+    controls: DragControls
 }
 
 export type WindowsContexType = {
@@ -31,4 +34,9 @@ export type WindowsStateType = {
         seconds: string,
     }
 
+}
+
+type TaskbarIconsType = {
+    icon: string,
+    alt: string
 }

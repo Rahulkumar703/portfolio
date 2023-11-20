@@ -1,6 +1,12 @@
+import TaskbarIcon from "../client/TaskbarIcon"
+
 const Taskbar = () => {
     return (
-        <footer className="w-full h-14 bg-transparent backdrop-blur-2xl border border-t-[1px] absolute bottom-0">
+        <footer className="flex items-center w-full h-12 bg-transparent backdrop-blur-3xl border-t-[1px] border-transparent absolute bottom-0">
+            <div className="flex gap-1 mx-auto">
+                <TaskbarIcon icon="/icons/startButton.png" alt="start" />
+                <TaskbarIcon icon="/icons/fileExplorer.png" alt="explorer" />
+            </div>
         </footer>
     )
 }

@@ -5,7 +5,7 @@ import { motion, useDragControls } from "framer-motion"
 import { usePathname } from "next/navigation";
 
 
-const layout = ({ children }: ChildrenType) => {
+const Layout = ({ children }: ChildrenType) => {
 
     const controls = useDragControls();
     const pathname = usePathname();
@@ -44,4 +44,4 @@ const layout = ({ children }: ChildrenType) => {
         </motion.section>
     )
 }
-export default layout
+export default Layout

@@ -2,11 +2,11 @@
 import { DAYS, MONTHS } from "@/lib/utils"
 import { ChildrenType, WindowsStateType } from "../types/types"
 import WindowsContex from "./WindowsContext"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
 const WinowsProvider = ({ children }: ChildrenType) => {
 
-    let DATE = new Date();
+    let DATE = useRef(new Date());
 
     const [WindowsState, setWindowsState] = useState<WindowsStateType>({
         batteryPercentage: 42,
@@ -15,28 +15,28 @@ const WinowsProvider = ({ children }: ChildrenType) => {
         volumeLevel: 80,
         fullScreen: false,
         dateTime: {
-            day: DAYS[DATE.getDay()],
-            month: MONTHS[DATE.getMonth()],
-            date: DATE.getDate(),
-            hours: (DATE.getHours() > 9 ? DATE.getHours().toString() : '0' + DATE.getHours()),
-            minutes: DATE.getMinutes() > 9 ? DATE.getMinutes().toString() : '0' + DATE.getMinutes(),
-            seconds: DATE.getSeconds() > 9 ? DATE.getSeconds().toString() : '0' + DATE.getSeconds(),
+            day: DAYS[DATE.current.getDay()],
+            month: MONTHS[DATE.current.getMonth()],
+            date: DATE.current.getDate(),
+            hours: (DATE.current.getHours() > 9 ? DATE.current.getHours().toString() : '0' + DATE.current.getHours()),
+            minutes: DATE.current.getMinutes() > 9 ? DATE.current.getMinutes().toString() : '0' + DATE.current.getMinutes(),
+            seconds: DATE.current.getSeconds() > 9 ? DATE.current.getSeconds().toString() : '0' + DATE.current.getSeconds(),
         }
     });
 
 
     useEffect(() => {
         const updateTime = () => {
-            DATE = new Date();
+            DATE.current = new Date();
             setWindowsState(prev => ({
                 ...prev,
                 dateTime: {
-                    day: DAYS[DATE.getDay()],
-                    month: MONTHS[DATE.getMonth()],
-                    date: DATE.getDate(),
-                    hours: (DATE.getHours() > 9 ? DATE.getHours().toString() : '0' + DATE.getHours()),
-                    minutes: DATE.getMinutes() > 9 ? DATE.getMinutes().toString() : '0' + DATE.getMinutes(),
-                    seconds: DATE.getSeconds() > 9 ? DATE.getSeconds().toString() : '0' + DATE.getSeconds(),
+                    day: DAYS[DATE.current.getDay()],
+                    month: MONTHS[DATE.current.getMonth()],
+                    date: DATE.current.getDate(),
+                    hours: (DATE.current.getHours() > 9 ? DATE.current.getHours().toString() : '0' + DATE.current.getHours()),
+                    minutes: DATE.current.getMinutes() > 9 ? DATE.current.getMinutes().toString() : '0' + DATE.current.getMinutes(),
+                    seconds: DATE.current.getSeconds() > 9 ? DATE.current.getSeconds().toString() : '0' + DATE.current.getSeconds(),
                 }
             }))
         }

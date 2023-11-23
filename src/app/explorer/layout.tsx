@@ -3,6 +3,7 @@ import ExplorerTitle from "@/components/client/ExplorerTitle";
 import { ChildrenType } from "@/types/types"
 import { motion, useDragControls } from "framer-motion"
 import { usePathname } from "next/navigation";
+import { useEffect, useRef } from "react";
 
 
 const Layout = ({ children }: ChildrenType) => {
@@ -10,25 +11,37 @@ const Layout = ({ children }: ChildrenType) => {
     const controls = useDragControls();
     const pathname = usePathname();
     const lastPath = pathname.split('/')[pathname.split('/').length - 1]
+    const explorerRef = useRef<HTMLElement>(null);
+
+    useEffect(() => {
+        explorerRef.current?.focus();
+    }, [])
 
     const Paths: { [index: string]: any } = {
-        ThisPC: {
+        ThisPc: {
             icon: '/icons/Computer.svg',
-            title: 'About Me'
+            title: 'This PC'
         },
         AboutMe: {
             icon: '/icons/user.png',
-            title: 'This PC'
-        }
+            title: 'About Me'
+        },
     }
 
     return (
         <motion.section
-            className={`z-20 overflow-hidden flex flex-col bg-card absolute h-4/6 w-2/3 backdrop-blur-xl border-transparent rounded-lg`}
+            ref={explorerRef}
+            className={`z-20 overflow-hidden flex flex-col absolute h-4/6 w-2/3 border-[1px] border-transparent focus:border-glass rounded-lg shadow-2xl bg-glass backdrop-blur-[900px] focus:bg-transparent focus:backdrop-blur-3xl`}
+            tabIndex={0}
+            autoFocus
             drag
             initial={{
-                x: 0,
-                y: 0
+                scale: 0,
+                opacity: 0
+            }}
+            animate={{
+                scale: 1,
+                opacity: 1
             }}
             dragMomentum={false}
             dragControls={controls}
@@ -39,8 +52,10 @@ const Layout = ({ children }: ChildrenType) => {
                 ease: "easeOut",
             }}
         >
-            <ExplorerTitle icon={Paths[lastPath].icon} title={Paths[lastPath].title} controls={controls} />
-            {children}
+            <ExplorerTitle icon={pathname === '/explorer' ? Paths.ThisPc.icon : Paths[lastPath].icon} title={pathname === '/explorer' ? Paths.ThisPc.title : Paths[lastPath].title} controls={controls} />
+            <section className="bg-glass backdrop-blur-3xl h-full" >
+                {children}
+            </section>
         </motion.section>
     )
 }

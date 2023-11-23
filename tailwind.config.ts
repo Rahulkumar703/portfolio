@@ -17,11 +17,12 @@ const config: Config = {
     },
     extend: {
       boxShadow: {
-        'cutout-left': '2px 2px 0 2px var(--tab)',
-        'cutout-right': '-2px 2px 0 2px var(--tab)',
+        'cutout-l': '2px 2px 0 2px var(--tab)',
+        'cutout-r': '-2px 2px 0 2px var(--tab)',
+        'up-md': '-2px -4px 8px -2px rgb(0 0 0 / 0.1), -2px -2px 6px -3px rgb(0 0 0 / 0.1);'
       },
       colors: {
-        transparent: "var(--transparent)",
+        glass: "var(--glass)",
         tab: "var(--tab)",
         titleBar: "var(--title-bar)",
         hover: "var(--hover)",

@@ -39,4 +39,5 @@ export type WindowsStateType = {
 type TaskbarIconsType = {
     icon: string,
     alt: string
+    href: string
 }

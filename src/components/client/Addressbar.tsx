@@ -1,4 +1,4 @@
-import { FiArrowLeft, FiArrowRight, FiArrowUp } from "react-icons/fi"
+import ExplorerNavigation from "./ExplorerNavigation"
 
 const Addressbar = () => {
     return (
@@ -6,15 +6,7 @@ const Addressbar = () => {
             className="bg-tab p-1 flex gap-3"
             onPointerDownCapture={e => e.stopPropagation()}
         >
-            <div className="p-2 hover:bg-hover transition-all rounded">
-                <FiArrowLeft />
-            </div>
-            <div className="p-2 hover:bg-hover transition-all rounded">
-                <FiArrowRight />
-            </div>
-            <div className="p-2 hover:bg-hover transition-all rounded">
-                <FiArrowUp />
-            </div>
+            <ExplorerNavigation />
         </div>
     )
 }

@@ -11,19 +11,30 @@ const LockScreen = ({ children }: ChildrenType) => {
     const { WindowsState, setWindowsState } = useContext(WindowsContex);
     const [passwordScreen, setPasswordScreen] = useState(false);
     const [hydrated, setHydrated] = useState(false);
+    const [opacity, setOpacity] = useState(1);
+
 
     useEffect(() => {
         setHydrated(true)
     }, [])
 
     const handleDrag = (e: DragEvent) => {
-        if (e.screenY < 400) setPasswordScreen(true)
+        if (e.screenY < 400) {
+            setPasswordScreen(true);
+            setOpacity(0);
+        } else {
+            // Calculate the opacity based on the drag position
+            const calculatedOpacity = ((e.screenY - 400) / 250 * 100) / 100;
+            console.log(calculatedOpacity)
+            setOpacity(calculatedOpacity > 1 ? 1 : calculatedOpacity);
 
+        }
     }
     const login = () => {
         setWindowsState(prev => ({ ...prev, locked: false, fullScreen: true }));
         enterFullScreen();
     }
+
 
 
     if (WindowsState.locked) {
@@ -73,6 +84,14 @@ const LockScreen = ({ children }: ChildrenType) => {
                                 drag="y"
                                 dragConstraints={{ left: 0, right: 0, top: -500, bottom: 0 }}
                                 dragElastic
+                                whileDrag={{
+                                    opacity: opacity,
+                                    transition: {
+                                        duration: 0,
+                                        type: "tween",
+                                        delay: 0,
+                                    },
+                                }}
                                 transition={{
                                     duration: .5,
                                     type: "tween",

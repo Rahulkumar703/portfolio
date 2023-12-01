@@ -37,6 +37,7 @@ const segoeUi = localFont({
 export const metadata: Metadata = {
   title: 'Rahul Kumar',
   description: "Hey there! I'm Rahul Kumar, a web developer, and this is my portfolio at rahusweb.in. Dive into my world of coding and design, where I create websites that not only look good but work like a charm. Explore my projects and let's bring your online ideas to life together. Click now for a web-tastic journey!",
+  keywords:['rahulkumar703','react-developer','next-developer','next.js-developer','frontend developer','web-developer','rahul','rahul web developer','rahulsweb','rahulsweb .in','btech student','mce motihari','rahul atplc','motihari college of engineering'],
 }
 
 export default function RootLayout({ children }: ChildrenType) {

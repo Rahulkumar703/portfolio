@@ -25,11 +25,13 @@ const TaskbarIcon = ({ icon, alt, href }: TaskbarIconsType) => {
                         height={100}
                         alt={alt}
                         className='w-6 h-auto'
+                        onMouseDown={ (e) => e.currentTarget.style.scale = ".8"}
+                        onMouseUp={ (e) => e.currentTarget.style.scale = "1"}
                     />
                     <motion.span
                         initial={{ opacity: 0, width: 0 }}
                         animate={{ opacity: 1, width: "33.333333%" }}
-                        className='absolute bottom-0 left-1/2 -translate-x-1/2 h-[3px] bg-black mt-auto rounded' />
+                        className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-[3px] ${pathname === href ? 'bg-primary' : 'bg-transparent'} mt-auto rounded`} />
                 </motion.section>
             </AnimatePresence>
         </Link>

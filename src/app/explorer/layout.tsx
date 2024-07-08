@@ -17,7 +17,7 @@ const Layout = ({ children }: ChildrenType) => {
         explorerRef.current?.focus();
     }, [])
 
-    const Paths: { [index: string]: any } = {
+    const Paths: { [index: string]: { icon: string, title: string } } = {
         ThisPc: {
             icon: '/icons/Computer.svg',
             title: 'This PC'
@@ -25,6 +25,10 @@ const Layout = ({ children }: ChildrenType) => {
         AboutMe: {
             icon: '/icons/user.png',
             title: 'About Me'
+        },
+        ['not-found']: {
+            icon: '/icons/user.png',
+            title: 'Not Found'
         },
     }
 

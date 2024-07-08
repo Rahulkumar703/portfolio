@@ -25,7 +25,7 @@ const LockScreen = ({ children }: ChildrenType) => {
         } else {
             // Calculate the opacity based on the drag position
             const calculatedOpacity = ((e.screenY - 400) / 250 * 100) / 100;
-            console.log(calculatedOpacity)
+            // console.log(calculatedOpacity)
             setOpacity(calculatedOpacity > 1 ? 1 : calculatedOpacity);
 
         }

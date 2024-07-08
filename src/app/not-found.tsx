@@ -1,11 +1,14 @@
-import React from 'react'
+'use client';
+
+import { useRouter } from "next/navigation";
 
 const NotFound = () => {
-    return (
-        <>
-            <h1>NotFound</h1>
-        </>
-    )
+
+    const router = useRouter();
+
+    router.replace('/explorer/not-found');
+
+    return null;
 }
 
 export default NotFound

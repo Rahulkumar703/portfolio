@@ -34,7 +34,7 @@ const ExplorerTitle = ({ icon, title, controls }: ExplorerTitleType) => {
                 <p className="select-none">{title}</p>
                 <FiX className="ml-auto p-1 hover:bg-hover rounded transition-all" size={22} onClick={closeWindow} />
             </motion.div>
-            <Addressbar />
+            <Addressbar title={title}/>
             <WindowActions />
         </motion.div>
     )

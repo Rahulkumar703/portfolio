@@ -5,7 +5,6 @@ import WindowActions from "./WindowActions";
 import { FiX } from "react-icons/fi";
 import Image from "next/image";
 import { ExplorerTitleType } from "../../types/types";
-import Addressbar from "./Addressbar";
 import { motion } from 'framer-motion'
 
 const ExplorerTitle = ({ icon, title, controls }: ExplorerTitleType) => {
@@ -34,7 +33,6 @@ const ExplorerTitle = ({ icon, title, controls }: ExplorerTitleType) => {
                 <p className="select-none">{title}</p>
                 <FiX className="ml-auto p-1 hover:bg-hover rounded transition-all" size={22} onClick={closeWindow} />
             </motion.div>
-            <Addressbar title={title}/>
             <WindowActions />
         </motion.div>
     )

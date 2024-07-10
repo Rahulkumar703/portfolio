@@ -1,5 +1,7 @@
 "use client"
+import Addressbar from "@/components/client/Addressbar";
 import ExplorerTitle from "@/components/client/ExplorerTitle";
+import Sidebar from "@/components/server/Sidebar";
 import { ChildrenType } from "@/types/types"
 import { motion, useDragControls } from "framer-motion"
 import { usePathname } from "next/navigation";
@@ -22,7 +24,7 @@ const Layout = ({ children }: ChildrenType) => {
             icon: '/icons/Computer.svg',
             title: 'This PC'
         },
-        AboutMe: {
+        about: {
             icon: '/icons/user.png',
             title: 'About Me'
         },
@@ -57,7 +59,10 @@ const Layout = ({ children }: ChildrenType) => {
             }}
         >
             <ExplorerTitle icon={pathname === '/explorer' ? Paths.ThisPc.icon : Paths[lastPath].icon} title={pathname === '/explorer' ? Paths.ThisPc.title : Paths[lastPath].title} controls={controls} />
-            <section className="bg-glass backdrop-blur-3xl h-full" >
+            <Addressbar title={pathname === '/explorer' ? Paths.ThisPc.title : Paths[lastPath].title} />
+
+            <section className="flex gap-2 bg-glass backdrop-blur-3xl h-full" >
+                <Sidebar />
                 {children}
             </section>
         </motion.section>

@@ -11,7 +11,7 @@ const Desktop = () => {
         {
             icon: '/icons/user.png',
             label: 'About Me',
-            url: '/explorer/AboutMe'
+            url: '/explorer/about'
         },
     ]
 

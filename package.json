@@ -1,6 +1,6 @@
 {
   "name": "windows-portfolio",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -9,17 +9,22 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@radix-ui/react-hover-card": "^1.1.14",
     "class-variance-authority": "^0.7.0",
-    "clsx": "^2.0.0",
+    "clsx": "^2.1.1",
     "framer-motion": "^10.16.4",
     "lucide-react": "^0.288.0",
+    "motion": "^12.19.2",
     "next": "^14.0.3",
     "next-themes": "^0.2.1",
+    "nextjs-toploader": "^3.8.16",
+    "qss": "^3.0.0",
     "react": "^18",
     "react-dom": "^18",
     "react-icons": "^4.11.0",
+    "react-pdf": "^10.0.1",
     "screenfull": "^6.0.2",
-    "sharp": "^0.33.0",
+    "sharp": "^0.33.5",
     "tailwind-merge": "^1.14.0",
     "tailwindcss-animate": "^1.0.7"
   },
